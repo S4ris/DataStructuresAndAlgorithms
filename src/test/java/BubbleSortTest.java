@@ -1,8 +1,10 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 
 import java.util.Arrays;
-import java.util.IllegalFormatException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,41 +19,47 @@ class BubbleSortTest {
     }
 
     @Test
-    void sortFirstAttay(){
-
-        int[] testCase = {1,2,2,1,0,0,2,1,0};
-        int[] result = {0,0,0,1,1,1,2,2,2};
-
-        assertEquals(Arrays.toString(result), bubbleSort.sort(testCase));
-    }
-
-    @Test
-    void sortSecondAttay(){
+    void sortArray(){
 
         int[] testCase = {9,1,4,5,2,6,8,7,3};
         int[] result = {1,2,3,4,5,6,7,8,9};
 
+        //This one work only when method returns String
+        assertEquals(Arrays.toString(result), bubbleSort.sort(testCase));
+
+        //This one work only when method returns int[]
+        //assertArrayEquals(bubbleSort.sort(result), bubbleSort.sort(testCase));
+    }
+
+    @Test
+    void sortOneNumberArray(){
+
+        int[] testCase = {5};
+        int[] result = {5};
+
         assertEquals(Arrays.toString(result), bubbleSort.sort(testCase));
     }
 
     @Test
-    void sortThirdAttay(){
+    void sortSameNumbers(){
 
-        int[] testCase = {32,25,67,12,1,0,15,98,124,56};
-        int[] result = {0,1,12,15,25,32,56,67,98,124};
+        int[] testCase = {1,1,1,1,1,1,1,1,1};
+        int[] result = {1,1,1,1,1,1,1,1,1};
 
         assertEquals(Arrays.toString(result), bubbleSort.sort(testCase));
     }
 
-   /* @Test
-    void Error(){
+    @ParameterizedTest
+    @EmptySource
+    void sortEmptyArray(int[] testCase){
 
-        String[] testCase = {"Todd","Adam","Jannet","Sam","Joe"};
+        assertEquals(0,testCase.length);
+    }
 
-        assertThrows(IllegalStateException.class,
-                () -> {
-                    bubbleSort.sort(testCase);)
-                });
-    }*/
+    @ParameterizedTest
+    @NullSource
+    void sortNullArray(int[] testCase){
 
+        assertNull(testCase);
+    }
 }

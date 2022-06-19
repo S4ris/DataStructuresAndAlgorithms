@@ -4,7 +4,6 @@ public class BubbleSort {
 
     public String sort(int[] array){
 
-        try {
             int size = array.length;
 
             for (int i = 0; i < size - 1; i++) {
@@ -19,9 +18,10 @@ public class BubbleSort {
                 }
             }
 
+            //This one work only when method returns int[]
+            //return array;
+
+            //This one work only when method returns String
             return Arrays.toString(array);
-        } catch(Exception e){
-            return "Something went wrong! Please check input value";
-        }
     }
 }
